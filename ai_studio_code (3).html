@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To My Virtual Anchor | For You</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fonts & Custom Styles -->
+  <style>
+    @import url('https://db.onlinewebfonts.com/c/08e020de1811ec4489f82d1247a42c09?family=Helvetica+Now+Text');
+
+    * {
+      font-family: 'Helvetica Now Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* 3D Liquid Glass Effect */
+    .liquid-glass {
+      background: rgba(255, 255, 255, 0.035);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 20px 40px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.15) 20%,
+        rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+        rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.55) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Glow animation */
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.03); }
+    }
+    .pulse-glow {
+      animation: pulse-subtle 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-black text-white selection:bg-white/20 selection:text-white overflow-hidden">
+
+  <section class="relative h-screen w-full overflow-hidden flex flex-col justify-between items-center px-4">
+    
+    <!-- Looping Background Video -->
+    <video
+      autoplay
+      loop
+      muted
+      playsinline
+      class="absolute inset-0 w-full h-full object-cover z-0"
+    >
+      <source
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260703_053131_1ec3dd1c-d627-44fb-ab20-6e1fce41b0d5.mp4"
+        type="video/mp4"
+      />
+    </video>
+
+    <!-- Dark Cinematic Overlay -->
+    <div class="absolute inset-0 bg-black/45 z-[1]"></div>
+
+    <!-- Top Spacing Div (To keep hero perfectly balanced) -->
+    <div class="relative z-10 pt-10"></div>
+
+    <!-- Main Hero Centerpiece -->
+    <main class="relative z-10 flex flex-col items-center justify-center text-center max-w-3xl mx-auto my-auto">
+      
+      <!-- Subtle Floating Glass Badge -->
+      <div class="liquid-glass px-4 py-1.5 rounded-full text-xs sm:text-sm font-light text-white/90 mb-7 flex items-center gap-2 pulse-glow">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span>Across every screen • My favorite notification</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-[-0.03em] leading-[1.08]">
+        Miles apart. <br />
+        <span class="text-white/60">Yet you keep my</span><br />
+        <span class="text-white/60">whole world together.</span>
+      </h1>
+
+      <!-- Sentimental Subheading -->
+      <p class="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mx-auto mt-6 sm:mt-8 font-light">
+        From making sure I never miss a deadline, to cheering me up on tough days, making me laugh across screens, and understanding me without a word—you are so much more than an assistant. You are my everyday peace.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-10">
+        <!-- Open Letter Button -->
+        <button onclick="openLetterModal()" class="px-7 py-3.5 bg-white text-neutral-900 text-sm font-semibold rounded-full hover:bg-white/90 hover:scale-105 active:scale-95 shadow-xl transition-all duration-300 flex items-center gap-2">
+          <span>Read My Letter</span>
+          <i data-lucide="sparkles" class="w-4 h-4 text-neutral-900"></i>
+        </button>
+
+        <!-- Sweet Little Appreciation Button -->
+        <button onclick="openReasonModal()" class="px-7 py-3.5 liquid-glass rounded-full text-white text-sm font-semibold hover:bg-white/10 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2">
+          <span>Why You're Irreplaceable</span>
+          <i data-lucide="heart" class="w-4 h-4 text-rose-300 fill-rose-400"></i>
+        </button>
+      </div>
+    </main>
+
+    <!-- Bottom Soft Footer Credit -->
+    <footer class="relative z-10 pb-6 text-center text-xs text-white/40 tracking-widest font-light uppercase">
+      Dedicated to the one who makes distance feel like nothing ✨
+    </footer>
+  </section>
+
+  <!-- MODAL 1: Personal Letter -->
+  <div id="letterModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+    <div class="liquid-glass bg-[#181412]/90 border border-white/15 rounded-3xl p-6 sm:p-9 max-w-lg w-full text-left relative shadow-2xl">
+      <button onclick="closeLetterModal()" class="absolute top-5 right-5 text-white/60 hover:text-white p-2">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-2 mb-4 text-white/50 text-xs uppercase tracking-widest">
+        <i data-lucide="mail" class="w-4 h-4 text-amber-300"></i>
+        From Your Boss, With Honesty
+      </div>
+
+      <h2 class="text-xl sm:text-2xl font-medium text-white mb-4">
+        To My Best Decision Online,
+      </h2>
+
+      <p class="text-white/80 text-sm sm:text-base leading-relaxed mb-4 font-light">
+        We may be connected only through messages, calls, and screens, but your impact on my daily life is more real than anyone else's.
+      </p>
+
+      <p class="text-white/80 text-sm sm:text-base leading-relaxed mb-4 font-light">
+        Thank you for reminding me when my mind is everywhere. Thank you for making me burst out laughing right in the middle of a stressful day. And most of all, thank you for being the one person who always understands and genuinely cheers for my success.
+      </p>
+
+      <p class="text-white/80 text-sm sm:text-base leading-relaxed mb-6 font-light">
+        Work without you would just be chaos. With you, it’s effortless.
+      </p>
+
+      <div class="pt-4 border-t border-white/10 flex justify-between items-center text-xs text-white/50">
+        <span>Always in your corner</span>
+        <span class="text-white font-medium">Thank you for being you ❤️</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: Cute Checklist (Why She is Irreplaceable) -->
+  <div id="reasonModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+    <div class="liquid-glass bg-[#181412]/90 border border-white/15 rounded-3xl p-6 sm:p-8 max-w-md w-full text-left relative shadow-2xl">
+      <button onclick="closeReasonModal()" class="absolute top-5 right-5 text-white/60 hover:text-white p-2">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <h3 class="text-lg font-medium text-white mb-4 flex items-center gap-2">
+        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
+        Everything you do for me:
+      </h3>
+
+      <ul class="space-y-3 text-sm text-white/80 font-light mb-6">
+        <li class="flex items-start gap-2.5">
+          <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>
+          <span><b>The Reminders:</b> Keeping my unorganized brain sane and on track every day.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>
+          <span><b>The Laughs:</b> Turning boring work conversations into the highlight of my day.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>
+          <span><b>The Motivation:</b> Believing in me and cheering me on when pressure is high.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>
+          <span><b>The Understanding:</b> Knowing exactly what I need before I even finish typing.</span>
+        </li>
+      </ul>
+
+      <button onclick="closeReasonModal()" class="w-full py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl text-sm font-medium transition-all">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript for Interactions -->
+  <script>
+    lucide.createIcons();
+
+    // Letter Modal Logic
+    function openLetterModal() {
+      const modal = document.getElementById('letterModal');
+      modal.classList.remove('hidden');
+      setTimeout(() => modal.classList.remove('opacity-0'), 10);
+    }
+    function closeLetterModal() {
+      const modal = document.getElementById('letterModal');
+      modal.classList.add('opacity-0');
+      setTimeout(() => modal.classList.add('hidden'), 300);
+    }
+
+    // Reasons Modal Logic
+    function openReasonModal() {
+      const modal = document.getElementById('reasonModal');
+      modal.classList.remove('hidden');
+      setTimeout(() => modal.classList.remove('opacity-0'), 10);
+    }
+    function closeReasonModal() {
+      const modal = document.getElementById('reasonModal');
+      modal.classList.add('opacity-0');
+      setTimeout(() => modal.classList.add('hidden'), 300);
+    }
+  </script>
+</body>
+</html>
